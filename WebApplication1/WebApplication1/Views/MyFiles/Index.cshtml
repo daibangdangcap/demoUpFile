@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebApplication1.Models.MyFile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Upload", "MyFiles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+    <input type="submit" value="Upload" />
+}
+@foreach (var file in Model)
+{
+    <p> @file.Name</p>
+    <a href="@Url.Action("Download", "MyFiles", new { id = file.ID })">Download</a>
+}
